@@ -2,7 +2,7 @@ type Vector = number[];
 type Matrix = Vector[];
 type sgn = 1 | -1;
 
-function haveEqualDimensions(v1: Vector, v2: Vector) : boolean{
+function haveEqualDimensions(v1: Vector, v2: Vector) : boolean {
     return v1.length === v2.length;
 }
 
@@ -39,6 +39,18 @@ function getDeterminant(A: Matrix): number  {
     return size;//後で行列式を返すように変更する
 
 }
+
+function getFactorial(n: number): number {
+    if(n < 0){
+        throw new Error(`nが負の数なので階乗を計算出来ません`)
+    }
+
+    let result = 1;
+    for(let i=2; i<=n; i++){
+        result*=i;
+    }
+    return result;
+}
     
 const v1: Vector = [1,2,3];
 const v2: Vector = [1,2,3,4];
@@ -52,3 +64,6 @@ const A2: Matrix = [v4,v2,v3,v5];
 
 //console.log(getDeterminant(A1));
 console.log(getDeterminant(A2));
+console.log(getFactorial(5));
+console.log(getFactorial(4));
+console.log(getFactorial(3));
