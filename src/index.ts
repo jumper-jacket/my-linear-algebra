@@ -1,27 +1,26 @@
 type Vector = number[];
 type Matrix = Vector[];
+type sgn = 1 | -1;
 
 function haveEqualDimensions(v1: Vector, v2: Vector) : boolean{
-    if(v1.length === v2.length){
-        return true;
-    }
-    return false;
+    return v1.length === v2.length;
 }
 
-function addVector(v1: Vector, v2: Vector): Vector | null {
-    if(haveEqualDimensions(v1,v2)){
-        const newVector: Vector = v1.map((val, index) => val + v2[index]);
-        return newVector;
+function addVector(v1: Vector, v2: Vector): Vector {
+    if(!haveEqualDimensions(v1,v2)){
+        throw new Error(`ベクトルの次元が異なるためベクトル同士の足し算が出来ません`)
     }
-    return null
+
+    return v1.map((val, index) => val + v2[index]);
 }
 
-function getInnerProduct(v1: Vector, v2: Vector): number | null{
-    if(haveEqualDimensions(v1,v2)){
-        const innerProduct: number = v1.reduce((sum, val, index) => sum + val * v2[index], 0);
-        return innerProduct;
+function getInnerProduct(v1: Vector, v2: Vector): number {
+    if(!haveEqualDimensions(v1,v2)){
+        throw new Error(`ベクトルの次元が異なるためベクトルの内積が計算できません`)
     }
-    return null;
+
+    const innerProduct: number = v1.reduce((sum, val, index) => sum + val * v2[index], 0);
+    return innerProduct;
 }
 
 function isSquareMatrix(A: Matrix): boolean {
@@ -29,16 +28,16 @@ function isSquareMatrix(A: Matrix): boolean {
     return A.every(row => row.length === size);
 }
 
-function getDeterminant(A: Matrix): number | null {
-    if(isSquareMatrix(A)){
-        const size = A.length;
-        console.log(A);
-        console.log(size);
-        return size;//後で行列式を返すように変更する
-
+function getDeterminant(A: Matrix): number  {
+    if(!isSquareMatrix(A)){
+        throw new Error(`正則行列でないため行列式は計算出来ません`);
     }
 
-    return null;
+    const size = A.length;
+    console.log(A);
+    console.log(size);
+    return size;//後で行列式を返すように変更する
+
 }
     
 const v1: Vector = [1,2,3];
@@ -51,5 +50,5 @@ const A1: Matrix = [v1,v2,v3];
 const A2: Matrix = [v4,v2,v3,v5];
 
 
-console.log(getDeterminant(A1));
+//console.log(getDeterminant(A1));
 console.log(getDeterminant(A2));
