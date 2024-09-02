@@ -1,6 +1,8 @@
 type Vector = number[];
 type Matrix = Vector[];
+type Permutation = number[];
 type sgn = 1 | -1;
+
 
 function haveEqualDimensions(v1: Vector, v2: Vector) : boolean {
     return v1.length === v2.length;
@@ -51,19 +53,44 @@ function getFactorial(n: number): number {
     }
     return result;
 }
+
+function generatePermutations(A: number[]): Permutation[] {
+    if(A.length === 0){
+        throw new Error(`置換するベクトルの要素が0ありません`);
+    }
+
+    if(A.length === 1){
+        return [A];
+    }
+
+    const result: Permutation[] = [];
+
+    for(let i=0; i<A.length; i++){
+        const rest = [...A.slice(0,i), ...A.slice(i+1)];
+        const perms = generatePermutations(rest);
+
+        for(const perm of perms){
+            result.push([A[i], ...perm]);
+        }
+    }
+
+    return result;
+}
     
 const v1: Vector = [1,2,3];
 const v2: Vector = [1,2,3,4];
 const v3: Vector = [1,2,3,4];
 const v4: Vector = [1,2,3,4];
 const v5: Vector = [1,2,3,4];
+const v6: Vector = [1,2,3,4,5];
+const v7: Vector = [1,2,3,4,5,6];
 
 const A1: Matrix = [v1,v2,v3];
 const A2: Matrix = [v4,v2,v3,v5];
 
 
 //console.log(getDeterminant(A1));
-console.log(getDeterminant(A2));
-console.log(getFactorial(5));
-console.log(getFactorial(4));
-console.log(getFactorial(3));
+console.log(generatePermutations(v1).length);
+console.log(generatePermutations(v2).length);
+console.log(generatePermutations(v6).length);
+console.log(generatePermutations(v7).length);
