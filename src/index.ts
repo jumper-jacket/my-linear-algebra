@@ -56,7 +56,7 @@ function getFactorial(n: number): number {
 
 function generatePermutations(A: number[]): Permutation[] {
     if(A.length === 0){
-        throw new Error(`置換するベクトルの要素が0ありません`);
+        throw new Error(`置換するベクトルの要素がありません`);
     }
 
     if(A.length === 1){
@@ -76,6 +76,10 @@ function generatePermutations(A: number[]): Permutation[] {
 
     return result;
 }
+
+function createVector(n: number): Vector {
+    return Array.from({ length: n}, (_, i) => i+1);
+}
     
 const v1: Vector = [1,2,3];
 const v2: Vector = [1,2,3,4];
@@ -88,9 +92,17 @@ const v7: Vector = [1,2,3,4,5,6];
 const A1: Matrix = [v1,v2,v3];
 const A2: Matrix = [v4,v2,v3,v5];
 
+const v8: Vector = [1,2,3];
+const v9: Vector = [4,5,6];
+const v10: Vector = [7,8,9];
 
-//console.log(getDeterminant(A1));
-console.log(generatePermutations(v1).length);
-console.log(generatePermutations(v2).length);
-console.log(generatePermutations(v6).length);
-console.log(generatePermutations(v7).length);
+const B1: Matrix=[v8,v9,v10];
+
+//配列の添字の確認
+const vec3: Vector = createVector(3);
+const permutation3 = generatePermutations(vec3);
+console.log(permutation3);
+
+for(let i=0;i<getFactorial(3);i++){
+    console.log(`[${vec3[0]}${permutation3[i][0]}, ${vec3[1]}${permutation3[i][1]},${vec3[2]}${permutation3[i][2]}]`);
+}
