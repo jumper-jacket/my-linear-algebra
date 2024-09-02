@@ -1,8 +1,4 @@
 "use strict";
-console.log("test");
-const v1 = [1, 2, 3];
-const v2 = [1, 2, 3, 4];
-const v3 = [1, 2, 3, 4];
 function haveEqualDimensions(v1, v2) {
     if (v1.length === v2.length) {
         return true;
@@ -23,5 +19,25 @@ function getInnerProduct(v1, v2) {
     }
     return null;
 }
-console.log(getInnerProduct(v1, v2));
-console.log(getInnerProduct(v3, v2));
+function isSquareMatrix(A) {
+    const size = A.length;
+    return A.every(row => row.length === size);
+}
+function getDeterminant(A) {
+    if (isSquareMatrix(A)) {
+        const size = A.length;
+        console.log(A);
+        console.log(size);
+        return size; //後で行列式を返すように変更する
+    }
+    return null;
+}
+const v1 = [1, 2, 3];
+const v2 = [1, 2, 3, 4];
+const v3 = [1, 2, 3, 4];
+const v4 = [1, 2, 3, 4];
+const v5 = [1, 2, 3, 4];
+const A1 = [v1, v2, v3];
+const A2 = [v4, v2, v3, v5];
+console.log(getDeterminant(A1));
+console.log(getDeterminant(A2));
