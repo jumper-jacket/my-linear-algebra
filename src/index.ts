@@ -80,29 +80,7 @@ function generatePermutations(A: number[]): Permutation[] {
 function createVector(n: number): Vector {
     return Array.from({ length: n}, (_, i) => i+1);
 }
-    
-const v1: Vector = [1,2,3];
-const v2: Vector = [1,2,3,4];
-const v3: Vector = [1,2,3,4];
-const v4: Vector = [1,2,3,4];
-const v5: Vector = [1,2,3,4];
-const v6: Vector = [1,2,3,4,5];
-const v7: Vector = [1,2,3,4,5,6];
-
-const A1: Matrix = [v1,v2,v3];
-const A2: Matrix = [v4,v2,v3,v5];
-
-const v8: Vector = [1,2,3];
-const v9: Vector = [4,5,6];
-const v10: Vector = [7,8,9];
-
-const B1: Matrix=[v8,v9,v10];
-
-//配列の添字の確認
-const vec3: Vector = createVector(3);
-const permutation3 = generatePermutations(vec3);
-console.log(permutation3);
-
-for(let i=0;i<getFactorial(3);i++){
-    console.log(`[${vec3[0]}${permutation3[i][0]}, ${vec3[1]}${permutation3[i][1]},${vec3[2]}${permutation3[i][2]}]`);
+//動作確認用
+export function sum(a: number, b: number) {
+    return a + b;
 }
