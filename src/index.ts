@@ -4,11 +4,11 @@ type Permutation = number[];
 type sgn = 1 | -1;
 
 
-function haveEqualDimensions(v1: Vector, v2: Vector) : boolean {
+export function haveEqualDimensions(v1: Vector, v2: Vector) : boolean {
     return v1.length === v2.length;
 }
 
-function addVector(v1: Vector, v2: Vector): Vector {
+export function addVector(v1: Vector, v2: Vector): Vector {
     if(!haveEqualDimensions(v1,v2)){
         throw new Error(`ベクトルの次元が異なるためベクトル同士の足し算が出来ません`)
     }
