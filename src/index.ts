@@ -35,11 +35,18 @@ export function getDeterminant(A: Matrix): number  {
         throw new Error(`正則行列でないため行列式は計算出来ません`);
     }
 
-    const size = A.length;
-    console.log(A);
-    console.log(size);
-    return size;//後で行列式を返すように変更する
+     const size = A.length;
+    if (size === 0) return 1;
+    if (size === 1) return A[0][0];
 
+    let determinant = 0;
+    for (let j = 0; j < size; j++) {
+        const subMatrix = A.slice(1).map(row => [...row.slice(0, j), ...row.slice(j + 1)]);
+        const cofactor = Math.pow(-1, j) * A[0][j] * getDeterminant(subMatrix);
+        determinant += cofactor;
+    }
+
+    return determinant;
 }
 
 export function getFactorial(n: number): number {
