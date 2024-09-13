@@ -16,7 +16,7 @@ export function addVector(v1: Vector, v2: Vector): Vector {
     return v1.map((val, index) => val + v2[index]);
 }
 
-function getInnerProduct(v1: Vector, v2: Vector): number {
+export function getInnerProduct(v1: Vector, v2: Vector): number {
     if(!haveEqualDimensions(v1,v2)){
         throw new Error(`ベクトルの次元が異なるためベクトルの内積が計算できません`)
     }
@@ -25,7 +25,7 @@ function getInnerProduct(v1: Vector, v2: Vector): number {
     return innerProduct;
 }
 
-function isSquareMatrix(A: Matrix): boolean {
+export function isSquareMatrix(A: Matrix): boolean {
     const size = A.length;
     return A.every(row => row.length === size);
 }
@@ -42,7 +42,7 @@ function getDeterminant(A: Matrix): number  {
 
 }
 
-function getFactorial(n: number): number {
+export function getFactorial(n: number): number {
     if(n < 0){
         throw new Error(`nが負の数なので階乗を計算出来ません`)
     }
@@ -54,7 +54,7 @@ function getFactorial(n: number): number {
     return result;
 }
 
-function generatePermutations(A: number[]): Permutation[] {
+export function generatePermutations(A: number[]): Permutation[] {
     if(A.length === 0){
         throw new Error(`置換するベクトルの要素がありません`);
     }
@@ -79,8 +79,4 @@ function generatePermutations(A: number[]): Permutation[] {
 
 function createVector(n: number): Vector {
     return Array.from({ length: n}, (_, i) => i+1);
-}
-//動作確認用
-export function sum(a: number, b: number) {
-    return a + b;
 }
