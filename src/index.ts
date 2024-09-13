@@ -30,7 +30,7 @@ export function isSquareMatrix(A: Matrix): boolean {
     return A.every(row => row.length === size);
 }
 
-function getDeterminant(A: Matrix): number  {
+export function getDeterminant(A: Matrix): number  {
     if(!isSquareMatrix(A)){
         throw new Error(`正則行列でないため行列式は計算出来ません`);
     }
@@ -77,6 +77,6 @@ export function generatePermutations(A: number[]): Permutation[] {
     return result;
 }
 
-function createVector(n: number): Vector {
+export function createVector(n: number): Vector {
     return Array.from({ length: n}, (_, i) => i+1);
 }

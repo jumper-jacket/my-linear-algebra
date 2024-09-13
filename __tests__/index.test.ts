@@ -1,5 +1,7 @@
-import { haveEqualDimensions, addVector, getInnerProduct,
-     isSquareMatrix, getFactorial, generatePermutations } from '../src/index';
+import {
+    haveEqualDimensions, addVector, getInnerProduct,
+    isSquareMatrix, getFactorial, generatePermutations,
+    createVector, getDeterminant } from '../src/index';
 
 describe("ベクトルの次元が同じかどうか", () => {
     describe("haveEqualDimensions", () => {
@@ -79,6 +81,31 @@ describe("階乗の計算", () => {
         });
     });
 });
+
+describe("ベクトルの作成", () => {
+    describe("creatVector", () => {
+        test("[] を作成", () => {
+            expect(createVector(0)).toStrictEqual([]);
+        });
+        test("[1] を作成", () => {
+            expect(createVector(1)).toStrictEqual([1]);
+        });
+        test("[1,2] を作成", () => {
+            expect(createVector(2)).toStrictEqual([1,2]);
+        });
+    });
+});
+
+describe("行列式の計算", () => {
+    describe("getDeterminant", () => {
+        test("正則行列でないと行列式は計算できないのでエラー", () => {
+            expect(() => getDeterminant([[1,2],[2,3],[3,4]])).toThrow("正則行列でないため行列式は計算出来ません");
+        });
+        test("正則行列でないと行列式は計算できないのでエラー", () => {
+            expect(() => getDeterminant([[1,2,3],[2,3,4]])).toThrow("正則行列でないため行列式は計算出来ません");
+        });
+    })
+})
 
 describe("n次対称群の生成", () => {
     describe("generatePermutations", () => {
