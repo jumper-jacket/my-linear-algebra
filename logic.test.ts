@@ -1,7 +1,7 @@
 import {
     haveEqualDimensions, addVector, getInnerProduct,
     isSquareMatrix, getFactorial, generatePermutations,
-    createVector, getDeterminant } from '../src/index';
+    createVector, getDeterminant } from './logic';
 
 describe("ベクトルの次元が同じかどうか", () => {
     describe("haveEqualDimensions", () => {
