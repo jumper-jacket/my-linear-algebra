@@ -2,52 +2,69 @@
 import React, { useState } from 'react';
 
 interface NumericInputPadProps {
-  onValueChange: (value: string) => void;
-  initialValue?: string;
-  maxLength?: number;
+  onValueChange: (value: number) => void;
 }
+
+type DeviceInput = "0"|"1"|"2"|"3"|"4"|"5"|"6"|"7"|"8"|"9"|".";
 
 const NumericInputPad: React.FC<NumericInputPadProps> = ({
   onValueChange,
-  initialValue = '0',
-  maxLength = 10
 }) => {
-  const [value, setValue] = useState(initialValue);
+  const [continuing, setContinuing] = useState<string>("0");
+  const [isFirstInput, setIsFirstInput] = useState(true);
 
-  const handleInput = (input: string) => {
-    if (value.length >= maxLength) return;
+  const handleInput = (input: DeviceInput) => {
+    if(isFirstInput){
+      if(input === "."){
+        //最初の入力で"."だったらそのまま小数の入力を続ける
+        setContinuing(continuing + input);
+      } else if(input === "0"){
+        setContinuing(continuing + ".");
 
-    let newValue = value;
-    if (value === '0' && input !== '.') {
-      newValue = input;
-    } else if (input === '.' && !value.includes('.')) {
-      newValue += input;
-    } else if (input !== '.') {
-      newValue += input;
+      } else {
+        //最初の入力は初期値0を置き換える
+        setContinuing(input);
+      }
+      setIsFirstInput(false);
+    } else {
+      //"."で無ければ入力を続ける
+      if(input !== "."){
+        setContinuing(continuing + input);
+      }
     }
 
-    setValue(newValue);
-    onValueChange(newValue);
+    console.log(continuing);
   };
 
   const handleDelete = () => {
-    const newValue = value.length > 1 ? value.slice(0, -1) : '0';
-    setValue(newValue);
-    onValueChange(newValue);
+    setContinuing(() => {
+      let len = continuing.length;
+      return continuing.slice(0, len-1);
+    });
   };
 
   const handleClear = () => {
-    setValue('0');
-    onValueChange('0');
+    setContinuing("0");
+    setIsFirstInput(true);
   };
+
+  const handleSubmit = () => {
+    if(!Number.isNaN(Number(continuing))){
+      onValueChange(Number(continuing));
+    } else {
+      console.log("不正な入力", Number(continuing));
+    }
+  }
+
+  const deviceInput: DeviceInput[] = ["7","8", "9", "4", "5", "6", "1", "2", "3","0", "."];
 
   return (
     <div className="max-w-xs mx-auto bg-gray-100 rounded-lg p-4">
       <div className="mb-4 p-2 bg-white rounded text-right text-2xl">
-        {value}
+        {continuing}
       </div>
       <div className="grid grid-cols-3 gap-2">
-        {['7', '8', '9', '4', '5', '6', '1', '2', '3', '0', '.'].map((btn) => (
+        {deviceInput.map((btn) => (
           <button
             key={btn}
             onClick={() => handleInput(btn)}
@@ -63,12 +80,22 @@ const NumericInputPad: React.FC<NumericInputPadProps> = ({
           Del
         </button>
       </div>
-      <button
-        onClick={handleClear}
-        className="w-full mt-2 p-3 text-xl bg-blue-200 rounded-lg hover:bg-blue-300"
-      >
-        Clear
-      </button>
+      <div className='flex'>
+        <button
+          onClick={handleClear}
+          className="w-full mt-2 p-3 text-xl bg-blue-200 rounded-lg hover:bg-blue-300"
+        >
+          Clear
+        </button>
+        <button
+          onClick={handleSubmit}
+          className="w-full mt-2 p-3 text-xl bg-green-200 rounded-lg hover:bg-blue-300"
+        >
+          submit
+        </button>
+
+      </div>
+
     </div>
   );
 };

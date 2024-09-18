@@ -29,8 +29,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <nav>
-          <Link href="/">Home</Link>
+        <nav className="flex justify-around">
+          <Link href="/">行列の保存</Link>
           <Link href="/linear-transformation">一次変換</Link>
         </nav>
         {children}
