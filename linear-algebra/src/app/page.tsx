@@ -1,8 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 
-import NumericInputPad from "./components/NumericInputPad";
-import NaturalNumPad from './components/NaturalNumPad';
+import DimensionInputDisplay from './components/DimensionInputDisplay';
 
 export default function Home() {
   const [val, setVal] = useState(0);
@@ -23,8 +22,7 @@ export default function Home() {
   <h1>数値入力のテスト {val}</h1>
   <h1>行の入力 {rows}</h1>
   <h1>列の入力 {cols}</h1>
-  <NumericInputPad onValueChange={handleValueChange}  />
-  <NaturalNumPad onValueChange={handleRowChange}/>
+  <DimensionInputDisplay inputDescription='行の入力' onValueChange={handleRowChange}/>
 </>
   );
 }
