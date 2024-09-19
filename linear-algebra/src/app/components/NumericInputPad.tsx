@@ -5,7 +5,7 @@ interface NumericInputPadProps {
   onValueChange: (value: number) => void;
 }
 
-type DeviceInput = "0"|"1"|"2"|"3"|"4"|"5"|"6"|"7"|"8"|"9"|".";
+type DeviceInput = "0"|"1"|"2"|"3"|"4"|"5"|"6"|"7"|"8"|"9"|"."| "-";
 
 const NumericInputPad: React.FC<NumericInputPadProps> = ({
   onValueChange,
@@ -19,8 +19,8 @@ const NumericInputPad: React.FC<NumericInputPadProps> = ({
         //最初の入力で"."だったらそのまま小数の入力を続ける
         setContinuing(continuing + input);
       } else if(input === "0"){
+        //最初の入力で"0"で入力されたら小数点に置き換える
         setContinuing(continuing + ".");
-
       } else {
         //最初の入力は初期値0を置き換える
         setContinuing(input);
@@ -29,7 +29,18 @@ const NumericInputPad: React.FC<NumericInputPadProps> = ({
     } else {
       //"."で無ければ入力を続ける
       if(input !== "."){
-        setContinuing(continuing + input);
+        if(input !=="-"){
+          //入力が"-"でなければ，末尾に入力を追加
+          setContinuing(continuing + input);
+        } else {
+          //入力が"-"だったら，一番前にマイナスを追加
+          //既にマイナスが追加されていたらマイナスを削除
+          if(continuing[0] === "-"){
+            setContinuing(continuing.slice(1));
+          }else{
+            setContinuing("-" + continuing);
+          }
+        }
       }
     }
 
@@ -56,7 +67,7 @@ const NumericInputPad: React.FC<NumericInputPadProps> = ({
     }
   }
 
-  const deviceInput: DeviceInput[] = ["7","8", "9", "4", "5", "6", "1", "2", "3","0", "."];
+  const deviceInput: DeviceInput[] = ["7","8", "9", "4", "5", "6", "1", "2", "3","0", ".","-"];
 
   return (
     <div className="max-w-xs mx-auto bg-gray-100 rounded-lg p-4">
@@ -73,14 +84,14 @@ const NumericInputPad: React.FC<NumericInputPadProps> = ({
             {btn}
           </button>
         ))}
+             </div>
+      <div className='flex'>
         <button
           onClick={handleDelete}
-          className="p-3 text-xl bg-red-200 rounded-lg hover:bg-red-300"
+          className="w-full mt-2 p-3 text-xl bg-red-200 rounded-lg hover:bg-blue-300"
         >
           Del
         </button>
-      </div>
-      <div className='flex'>
         <button
           onClick={handleClear}
           className="w-full mt-2 p-3 text-xl bg-blue-200 rounded-lg hover:bg-blue-300"
