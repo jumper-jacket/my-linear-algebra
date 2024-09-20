@@ -56,8 +56,8 @@ const NaturalNumPad : React.FC<NaturalNumPadProps> = ({
   const deviceInput: NaturalNumInput[] = ["7","8", "9", "4", "5", "6", "1", "2", "3","0"];
 
   return (
-    <div className="max-w-xs mx-auto bg-gray-100 rounded-lg p-4">
-      <div className="mb-4 p-2 bg-white rounded text-right text-2xl">
+    <div className="max-w-xs mx-auto bg-black  p-4">
+      <div className="mb-4 p-2 bg-black rounded text-right text-4xl text-white">
         {continuing}
       </div>
       <div className="grid grid-cols-3 gap-2">
@@ -65,28 +65,29 @@ const NaturalNumPad : React.FC<NaturalNumPadProps> = ({
           <button
             key={btn}
             onClick={() => handleInput(btn)}
-            className="p-3 text-xl bg-gray-200 rounded-lg hover:bg-gray-300"
+            className="p-3 font-medium text-2xl text-white bg-zinc-700 rounded-full hover:bg-zinc-500"
           >
             {btn}
           </button>
         ))}
         <button
           onClick={handleDelete}
-          className="p-3 text-xl bg-red-200 rounded-lg hover:bg-red-300"
+          className="p-3 text-white text-2xl bg-yellow-500 rounded-full hover:bg-yellow-300"
         >
           Del
         </button>
-      </div>
-      <div className='flex'>
         <button
           onClick={handleClear}
-          className="w-full mt-2 p-3 text-xl bg-blue-200 rounded-lg hover:bg-blue-300"
+          className="w-full mt-2 p-3 font-bold text-2xl bg-zinc-300 rounded-full hover:bg-zinc-100"
         >
-          Clear
+          C
         </button>
+      </div>
+      <div className='flex'>
+
         <button
           onClick={handleSubmit}
-          className="w-full mt-2 p-3 text-xl bg-green-200 rounded-lg hover:bg-blue-300"
+          className="text-white font-semibold w-full mt-2 p-3 text-2xl bg-yellow-500 rounded-full hover:bg-yellow-300"
         >
           submit
         </button>
