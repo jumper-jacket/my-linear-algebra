@@ -15,10 +15,10 @@ const ToggleSwitch:React.FC<ToggleSwitchProps> = ( { leftLabel, rightLabel, onTo
   };
 
   return (
-    <div className="max-w-xs mx-auto flex items-center justify-center bg-white">
+    <div className="max-w-xs mx-auto  flex items-center justify-center bg-white">
       <div
         className={`w-14 h-8 flex items-center rounded-full p-1 cursor-pointer ${
-          isOn ? 'bg-green-400' : 'bg-gray-300'
+          isOn ? 'bg-yellow-400' : 'bg-zinc-300'
         }`}
         onClick={toggleSwitch}
       >
@@ -28,7 +28,7 @@ const ToggleSwitch:React.FC<ToggleSwitchProps> = ( { leftLabel, rightLabel, onTo
           }`}
         />
       </div>
-      <span className="ml-3 text-sm font-medium text-gray-900">
+      <span className="ml-3  text-2xl font-bold text-gray-900">
         {isOn ? rightLabel :  leftLabel}
       </span>
     </div>

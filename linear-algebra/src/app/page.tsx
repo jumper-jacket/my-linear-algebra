@@ -33,11 +33,11 @@ export default function Home() {
   <h1>数値入力のテスト {val}</h1>
   <h1>行の入力 {rows}</h1>
   <h1>列の入力 {cols}</h1>
-  <ToggleSwitch leftLabel='左' rightLabel='右' onToggle={handleToggleSwitch}/>
-  {
-    isRight?<DimensionInputDisplay inputDescription='Row' onValueChange={handleRowChange}/>
-    :<DimensionInputDisplay inputDescription='Col' onValueChange={handleColChange}/>
-  }
+  <ToggleSwitch leftLabel='行' rightLabel='列' onToggle={handleToggleSwitch}/>
+  <DimensionInputDisplay 
+  inputDescription={isRight ? 'Col' : 'Row'}
+  onValueChange={isRight ? handleColChange : handleRowChange}
+  />
   <NumericInputPad onValueChange={handleValueChange}/>
 </>
   );
