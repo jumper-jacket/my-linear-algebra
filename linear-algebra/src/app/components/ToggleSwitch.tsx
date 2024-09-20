@@ -15,7 +15,7 @@ const ToggleSwitch:React.FC<ToggleSwitchProps> = ( { leftLabel, rightLabel, onTo
   };
 
   return (
-    <div className="flex items-center justify-center">
+    <div className="max-w-xs mx-auto flex items-center justify-center bg-white">
       <div
         className={`w-14 h-8 flex items-center rounded-full p-1 cursor-pointer ${
           isOn ? 'bg-green-400' : 'bg-gray-300'

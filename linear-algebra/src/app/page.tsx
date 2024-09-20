@@ -18,6 +18,10 @@ export default function Home() {
   const handleRowChange = (newValue: number) => {
     setRows(newValue);
   }
+  const handleColChange = (newValue: number) => {
+    setCols(newValue);
+  }
+
 
   const handleToggleSwitch = () => {
     isRight ? setIsRight(false) : setIsRight(true);
@@ -30,7 +34,10 @@ export default function Home() {
   <h1>行の入力 {rows}</h1>
   <h1>列の入力 {cols}</h1>
   <ToggleSwitch leftLabel='左' rightLabel='右' onToggle={handleToggleSwitch}/>
-  <DimensionInputDisplay inputDescription='行の入力' onValueChange={handleRowChange}/>
+  {
+    isRight?<DimensionInputDisplay inputDescription='Row' onValueChange={handleRowChange}/>
+    :<DimensionInputDisplay inputDescription='Col' onValueChange={handleColChange}/>
+  }
   <NumericInputPad onValueChange={handleValueChange}/>
 </>
   );

@@ -13,7 +13,7 @@ const DimensionInputDisplay:React.FC<DimensionInputDisplayProps> = (
 
   return(
   <section className='w-fit max-w-full mx-auto border-black border-4 rounded-lg'>
-  <h1 className="bg-teal-400 text-3xl text-center text-white">
+  <h1 className="bg-yellow-400 text-3xl font-semibold text-center text-white">
     {inputDescription}
   </h1>
   <NaturalNumPad onValueChange={onValueChange}/>
