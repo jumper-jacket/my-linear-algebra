@@ -27,21 +27,19 @@ const NumericInputPad: React.FC<NumericInputPadProps> = ({
       }
       setIsFirstInput(false);
     } else {
-      //"."で無ければ入力を続ける
-      if(input !== "."){
-        if(input !=="-"){
-          //入力が"-"でなければ，末尾に入力を追加
-          setContinuing(continuing + input);
-        } else {
-          //入力が"-"だったら，一番前にマイナスを追加
-          //既にマイナスが追加されていたらマイナスを削除
-          if(continuing[0] === "-"){
-            setContinuing(continuing.slice(1));
-          }else{
-            setContinuing("-" + continuing);
-          }
+      if(input !=="-"){
+        //入力が"-"でなければ，末尾に入力を追加
+        setContinuing(continuing + input);
+      } else {
+        //入力が"-"だったら，一番前にマイナスを追加
+        //既にマイナスが追加されていたらマイナスを削除
+        if(continuing[0] === "-"){
+          setContinuing(continuing.slice(1));
+        }else{
+          setContinuing("-" + continuing);
         }
       }
+
     }
 
     console.log(continuing);
