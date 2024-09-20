@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 
 import DimensionInputDisplay from './components/DimensionInputDisplay';
+import NumericInputPad from './components/NumericInputPad';
 
 export default function Home() {
   const [val, setVal] = useState(0);
@@ -23,6 +24,7 @@ export default function Home() {
   <h1>行の入力 {rows}</h1>
   <h1>列の入力 {cols}</h1>
   <DimensionInputDisplay inputDescription='行の入力' onValueChange={handleRowChange}/>
+  <NumericInputPad onValueChange={handleValueChange}/>
 </>
   );
 }

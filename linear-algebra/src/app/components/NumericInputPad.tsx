@@ -70,8 +70,8 @@ const NumericInputPad: React.FC<NumericInputPadProps> = ({
   const deviceInput: DeviceInput[] = ["7","8", "9", "4", "5", "6", "1", "2", "3","0", ".","-"];
 
   return (
-    <div className="max-w-xs mx-auto bg-gray-100 rounded-lg p-4">
-      <div className="mb-4 p-2 bg-white rounded text-right text-2xl">
+    <div className="max-w-xs mx-auto bg-black rounded-lg p-4">
+      <div className="mb-4 p-2 bg-black rounded text-right text-4xl text-white font-semibold">
         {continuing}
       </div>
       <div className="grid grid-cols-3 gap-2">
@@ -79,7 +79,7 @@ const NumericInputPad: React.FC<NumericInputPadProps> = ({
           <button
             key={btn}
             onClick={() => handleInput(btn)}
-            className="p-3 text-xl bg-gray-200 rounded-lg hover:bg-gray-300"
+            className="p-3 text-white font-semibold text-2xl bg-zinc-600 rounded-full hover:bg-zinc-300"
           >
             {btn}
           </button>
@@ -88,19 +88,19 @@ const NumericInputPad: React.FC<NumericInputPadProps> = ({
       <div className='flex'>
         <button
           onClick={handleDelete}
-          className="w-full mt-2 p-3 text-xl bg-red-200 rounded-lg hover:bg-blue-300"
+          className="w-full mt-2 p-3 text-white text-2xl bg-yellow-500 rounded-full hover:bg-yellow-300"
         >
           Del
         </button>
         <button
           onClick={handleClear}
-          className="w-full mt-2 p-3 text-xl bg-blue-200 rounded-lg hover:bg-blue-300"
+          className="w-full mt-2 p-3 font-bold text-2xl bg-zinc-200 rounded-full hover:bg-blue-300"
         >
-          Clear
+          C
         </button>
         <button
           onClick={handleSubmit}
-          className="w-full mt-2 p-3 text-xl bg-green-200 rounded-lg hover:bg-blue-300"
+          className="w-full mt-2 p-3 font-bold text-white text-xl bg-yellow-500 rounded-full hover:bg-blue-300"
         >
           submit
         </button>
