@@ -29,7 +29,7 @@ const ToggleSwitch:React.FC<ToggleSwitchProps> = ( { leftLabel, rightLabel, onTo
         />
       </div>
       <span className="ml-3 text-sm font-medium text-gray-900">
-        {isOn ? leftLabel : rightLabel }
+        {isOn ? rightLabel :  leftLabel}
       </span>
     </div>
   );
