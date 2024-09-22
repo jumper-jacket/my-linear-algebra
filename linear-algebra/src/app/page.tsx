@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import DimensionInputDisplay from './components/DimensionInputDisplay';
 import NumericInputPad from './components/NumericInputPad';
 import ToggleSwitch from './components/ToggleSwitch';
-import { isMainThread } from 'worker_threads';
+import CreateVector from './components/CreateVector';
 
 export default function Home() {
   const [val, setVal] = useState(0);
@@ -56,6 +56,7 @@ export default function Home() {
     : (<DimensionInputDisplay inputDescription='vector' onValueChange={handleVectorDimensionChange}/>)
   }
   
+  <CreateVector demension={vectorDimension}/>
   <NumericInputPad onValueChange={handleValueChange}/>
 </>
   );
