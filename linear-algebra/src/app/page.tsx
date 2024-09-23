@@ -13,6 +13,7 @@ export default function Home() {
   const [cols, setCols] = useState<number>(0);
   const [isRight, setIsRight] = useState(false);
   const [isMatrixMode, setIsMatrixMode] = useState(false);
+  const [isInputComplete, setInputComplete] = useState(false);
 
   const  handleValueChange = (newValue: number) => {
     setVal(newValue);
@@ -38,6 +39,10 @@ export default function Home() {
     setVectorDimention(newValue);
   }
 
+  const handleInputCompletion = () => {
+    setInputComplete(true);
+  }
+
   return (
 <>
   <h1>数値入力のテスト {val}</h1>
@@ -56,7 +61,7 @@ export default function Home() {
     : (<DimensionInputDisplay inputDescription='vector' onValueChange={handleVectorDimensionChange}/>)
   }
   
-  <CreateVector demension={vectorDimension}/>
+  <CreateVector dimension={vectorDimension}/>
   <NumericInputPad onValueChange={handleValueChange}/>
 </>
   );

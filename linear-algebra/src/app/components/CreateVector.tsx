@@ -1,9 +1,16 @@
+import React, { useState } from 'react';
+
 interface CreateVectorProps {
-    demension: number;
+    dimension: number;
 }
 
-const CreateVector: React.FC<CreateVectorProps> = ({ demension }) => {
-    return (<><h1>CreateVector {demension}</h1></>)
+const CreateVector: React.FC<CreateVectorProps> = ({ dimension }) => {
+    const [vector, setVector] = useState(new Array(dimension).fill(0));
+    return (
+    <>
+    <h1>CreateVector {dimension}</h1>
+    {vector.map(num => <li>{num}</li>)}
+    </>)
 }
 
 export default CreateVector;
