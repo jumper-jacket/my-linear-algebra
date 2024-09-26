@@ -6,6 +6,12 @@ import NumericInputPad from './components/NumericInputPad';
 import ToggleSwitch from './components/ToggleSwitch';
 import CreateVector from './components/CreateVector';
 
+enum Mode  {
+  Vector = "Vector",
+  Matrix = "Matrix"
+};
+
+
 export default function Home() {
   const [val, setVal] = useState(0);
   const [vectorDimension, setVectorDimension] = useState(0);
@@ -14,6 +20,11 @@ export default function Home() {
   const [isRight, setIsRight] = useState(false);
   const [isMatrixMode, setIsMatrixMode] = useState(false);
   const [isInputComplete, setInputComplete] = useState(false);
+  const [mode, setMode] = useState<Mode>(Mode.Vector);
+
+  const handleMode = () => {
+    setMode(currentMode => currentMode === Mode.Vector ? Mode.Matrix : Mode.Vector);
+  }
 
   const handleValueChange = useCallback((newValue: number) => {
     setVal(newValue);
@@ -48,9 +59,10 @@ export default function Home() {
       <h1>行の入力 {rows}</h1>
       <h1>列の入力 {cols}</h1>
       <h1>{isMatrixMode ? "matrix" : "vector"}</h1>
-      <ToggleSwitch leftLabel="vector" rightLabel="matrix" onToggle={handleInputMode}/>
+      <h1>{mode}</h1>
+      <ToggleSwitch leftLabel="vector" rightLabel="matrix" onToggle={handleMode}/>
       {
-        isMatrixMode ? (
+        mode === Mode.Matrix ? (
           <>
             <ToggleSwitch leftLabel='行' rightLabel='列' onToggle={handleToggleRowOrColSwitch}/>
             <DimensionInputDisplay
@@ -69,7 +81,6 @@ export default function Home() {
           )
         )
       }
-      <NumericInputPad onValueChange={handleValueChange}/>
     </>
   );
 }
