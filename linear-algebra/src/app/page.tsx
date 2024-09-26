@@ -42,10 +42,9 @@ export default function Home() {
 
   return (
     <>
-      <h1>{mode}</h1>
       <ToggleSwitch leftLabel="vector" rightLabel="matrix" onToggle={handleMode}/>
       {
-        mode === Mode.Matrix ? (
+        mode === Mode.Matrix && (
           <>
             <ToggleSwitch leftLabel='行' rightLabel='列' onToggle={handleToggleRowOrColSwitch}/>
             <DimensionInputDisplay
@@ -53,17 +52,22 @@ export default function Home() {
               onValueChange={isRight ? handleColChange : handleRowChange}
             />
           </>
-        ) : (
-          !isInputComplete ? (
+        )
+      }
+      {
+        mode === Mode.Vector && (
+          <>
+          {
+            !isInputComplete ? (
             <DimensionInputDisplay
               inputDescription='vector'
               onValueChange={handleVectorDimensionChange}
             />
-          ) : (
-            <CreateVector dimension={vectorDimension}/>
-          )
+            ) : <CreateVector dimension={vectorDimension}/>
+          }
+          </>
         )
-      }
-    </>
+      } 
+   </>
   );
 }
