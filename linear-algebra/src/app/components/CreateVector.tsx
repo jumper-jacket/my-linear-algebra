@@ -1,4 +1,6 @@
+"use client"
 import React, { useState } from 'react';
+import NumericInputPad from './NumericInputPad';
 
 interface CreateVectorProps {
     dimension: number;
@@ -6,10 +8,38 @@ interface CreateVectorProps {
 
 const CreateVector: React.FC<CreateVectorProps> = ({ dimension }) => {
     const [vector, setVector] = useState(new Array(dimension).fill(0));
+    const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+    const handleVectorChange = (index: number, value: number) => {
+        const newVector = [...vector];
+        newVector[index] = value;
+        setVector(newVector);
+        setActiveIndex(null);
+    };
+
     return (
     <>
-    <h1>CreateVector {dimension}</h1>
-    {vector.map(num => <li>{num}</li>)}
+    <div className="p-4">
+            <h1 className="text-2xl font-bold mb-4">Vector (Dimension: {dimension})</h1>
+            <div className="flex flex-col gap-4 mb-4">
+                {vector.map((num, index) => (
+                    <button
+                        key={index}
+                        className="p-2 border rounded"
+                        onClick={() => setActiveIndex(index)}
+                    >
+                        {index + 1}: {num}
+                    </button>
+                ))}
+            </div>
+            {activeIndex !== null && (
+                <div className="mt-4">
+                    <NumericInputPad
+                        onValueChange={(value) => handleVectorChange(activeIndex, value)}
+                    />
+                </div>
+            )}
+        </div>
     </>)
 }
 
