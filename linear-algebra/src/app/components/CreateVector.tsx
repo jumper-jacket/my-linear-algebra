@@ -19,13 +19,16 @@ const CreateVector: React.FC<CreateVectorProps> = ({ dimension }) => {
 
     return (
     <>
-    <div className="p-4">
+    <div className="p-4 flex flex-col items-center">
             <h1 className="text-2xl font-bold mb-4">Vector (Dimension: {dimension})</h1>
             <div className="flex flex-col gap-4 mb-4">
                 {vector.map((num, index) => (
                     <button
                         key={index}
-                        className="p-2 border rounded"
+                        className={`p-2 border rounded ${ index === activeIndex ?
+                            `bg-yellow-400`
+                            : 'bg-white'
+                        }`}
                         onClick={() => setActiveIndex(index)}
                     >
                         {index + 1}: {num}
