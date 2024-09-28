@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 
 import DimensionInputDisplay from './components/DimensionInputDisplay';
 import NumericInputPad from './components/NumericInputPad';
