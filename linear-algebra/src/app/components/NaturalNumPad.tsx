@@ -57,7 +57,10 @@ const NaturalNumPad : React.FC<NaturalNumPadProps> = ({
 
   return (
     <div className="max-w-xs mx-auto bg-black  p-4">
-      <div className="mb-4 p-2 bg-black rounded text-right text-4xl text-white">
+      <div 
+      role="status"
+      aria-live="polite"
+      className="mb-4 p-2 bg-black rounded text-right text-4xl text-white">
         {continuing}
       </div>
       <div className="grid grid-cols-3 gap-2">

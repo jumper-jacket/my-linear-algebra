@@ -1,5 +1,5 @@
 "use clint"
-import React, { useState } from 'react';
+import React from 'react';
 
 import NaturalNumPad from './NaturalNumPad';
 
