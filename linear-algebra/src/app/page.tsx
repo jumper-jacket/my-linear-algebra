@@ -41,7 +41,7 @@ export default function Home() {
 
   return (
     <>
-      <ToggleSwitch leftLabel="vector" rightLabel="matrix" onToggle={handleMode}/>
+      {!isInputComplete && <ToggleSwitch leftLabel="vector" rightLabel="matrix" onToggle={handleMode}/>}
       {
         mode === Mode.Matrix && (
           <>
